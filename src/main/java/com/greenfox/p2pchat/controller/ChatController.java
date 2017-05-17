@@ -36,10 +36,12 @@ public class ChatController {
   public String addUser(@RequestParam(name = "userName") String userName, Model model) {
     if (userName.isEmpty()) {
       error = "The username field is empty";
+      return "redirect:/enter";
     } else {
       userRepo.save(new User(userName));
+      error = "";
+      return "redirect:/";
     }
-    return "redirect:/enter";
   }
 
   @ExceptionHandler(Exception.class)
