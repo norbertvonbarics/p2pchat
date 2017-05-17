@@ -8,17 +8,17 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Chat {
+public class User {
 
   @Id
   long id;
-  String message;
+  String name;
 
-  public Chat() {
+  public User(String userName) {
   }
 
-  public Chat(long id, String message) {
+  public User(long id, String name) {
     this.id = id;
-    this.message = message;
+    this.name = name;
   }
 }
