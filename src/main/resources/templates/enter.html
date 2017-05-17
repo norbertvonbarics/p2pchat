@@ -6,8 +6,9 @@
   <title>Chat App</title>
 </head>
 <body>
+<p th:text="${error}">check</p>
 <h1>Enter</h1>
-<form method="post" action="/add">
+<form method="post" action="/enter/add">
   <input th:type="text" name="userName"/>
   <input th:type="submit" value="ENTER"/>
 </form>

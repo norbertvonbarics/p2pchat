@@ -1,6 +1,8 @@
 package com.greenfox.p2pchat.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.Getter;
@@ -13,6 +15,7 @@ import lombok.Setter;
 public class User {
 
   @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
   long id;
   String name;
 
@@ -20,7 +23,7 @@ public class User {
   this.name = userName;
   }
 
-  public User(long id, String name) {
+  public User(String name) {
     this.id = id;
     this.name = name;
   }
