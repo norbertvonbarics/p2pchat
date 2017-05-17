@@ -1,7 +1,7 @@
 package com.greenfox.p2pchat;
 
-public class ErrorMessage
-{
+public class ErrorMessage {
+
   String error;
 
   public ErrorMessage(String error) {

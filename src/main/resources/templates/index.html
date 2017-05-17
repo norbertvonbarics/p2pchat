@@ -7,29 +7,7 @@
 </head>
 <body>
 <h1>Peer to Peer Chat program</h1>
+<a href="/enter">link text</a>
 
-<form method="post" action="/register">
-  <input th:type="text" name="userName"/>
-  <input th:type="submit" value="add"/>
-</form>
-
-<!--
-
-<table>
-  <tr>
-    <th class="id">ID</th>
-    <th class="action">ACTION</th>
-    <th class="urgent">URGENT</th>
-    <th class="done">DONE</th>
-  </tr>
-  <tr th:each="entry : ${todoRepo}">
-    <td class="id" th:text="${entry.id}">1</td>
-    <td class="action" th:text="${entry.title}">2</td>
-    <td class="urgent" th:text="${entry.urgent}">3</td>
-    <td class="done" th:text="${entry.done}">4</td>
-    <td class="delete"><a th:href="@{/todo/deleteTodo(delete=${entry.id})}">delete</a></td>
-  </tr>
-</table>
--->
 </body>
 </html>

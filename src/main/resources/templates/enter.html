@@ -6,8 +6,11 @@
   <title>Chat App</title>
 </head>
 <body>
-<h1>Peer to Peer Chat program</h1>
-<a href="/enter">link text</a>
+<h1>Enter</h1>
+<form method="post" action="/add">
+  <input th:type="text" name="userName"/>
+  <input th:type="submit" value="ENTER"/>
+</form>
 
 </body>
 </html>
