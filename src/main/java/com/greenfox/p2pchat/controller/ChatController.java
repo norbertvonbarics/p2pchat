@@ -18,8 +18,7 @@ public class ChatController {
   UserRepository userRepo;
 
   @RequestMapping("/")
-  public String chat(@RequestParam(name = "text") String text){
-    System.out.println("MUUUUKODJ");
+  public String chat(){
     return "index";
   }
 
