@@ -1,5 +1,8 @@
 package com.greenfox.p2pchat.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class RandomID {
 
   public int randomID(){
