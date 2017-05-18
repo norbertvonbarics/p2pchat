@@ -51,7 +51,7 @@ public class ChatController {
       Log log = new Log("Error", "PUT", "/update", "no username provided");
       System.err.println(log.printLog(log));
       error = "The username field is empty.";
-      return "redirect:/update";
+      return "redirect:/";
     } else {
       Log log = new Log("INFO", "PUT", "/update", newName);
       System.out.println(log.printLog(log));
