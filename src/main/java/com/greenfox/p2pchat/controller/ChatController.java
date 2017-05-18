@@ -1,6 +1,7 @@
 package com.greenfox.p2pchat.controller;
 
 import com.greenfox.p2pchat.*;
+import com.greenfox.p2pchat.model.Log;
 import com.greenfox.p2pchat.model.RandomID;
 import com.greenfox.p2pchat.model.User;
 import com.greenfox.p2pchat.service.UserRepository;
@@ -42,6 +43,30 @@ public class ChatController {
       error = "";
       return "redirect:/";
     }
+  }
+
+  @RequestMapping("/update")
+  public String update(Model model, @RequestParam("newName") String newName) {
+    if (newName.isEmpty()) {
+      Log log = new Log("Error", "PUT", "/update", "no username provided");
+      System.err.println(log.printLog(log));
+      error = "The username field is empty.";
+      return "redirect:/update";
+    } else {
+      Log log = new Log("INFO", "PUT", "/update", newName);
+      System.out.println(log.printLog(log));
+      User user = userRepo.findOne((long)1);
+      updateExecute(user, newName);
+      error = "";
+
+      return "redirect:/";
+    }
+  }
+
+  @RequestMapping(value= "/update/execute", method= RequestMethod.PUT)
+  public void updateExecute(User user, String newName) {
+    user.setName(newName);
+    userRepo.save(user);
   }
 
   @ExceptionHandler(Exception.class)

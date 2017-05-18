@@ -1,13 +1,22 @@
-.header {
+.centered {
+  margin: 0 40%;
+}
+
+.enterheader {
+  text-align: center;
+  font-size: 100px;
+  color: #5AB325;
+  margin-top: 100px;
+  margin-bottom: 0;
+  text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+}
+
+.updateheader {
   font-size: 100px;
   color: #5AB325;
   margin-bottom: 0;
   margin-top: 100px;
   text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
-}
-
-.centered {
-  margin: 0 40%;
 }
 
 .input1 {
@@ -20,5 +29,48 @@
 }
 
 .image {
- margin: 0 38%;
+ margin: 0 39%;
+}
+
+.indexheader {
+  text-align: center;
+  font-size: 50px;
+  color: #5AB325;
+  margin-top: 100px;
+  margin-bottom: 10px;
+  text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+}
+
+.subheader {
+  text-align: center;
+  font-size: 30px;
+  color: #5AB325;
+  margin-bottom: 20px;
+  text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+}
+
+.sublink {
+  text-decoration: none;
+  margin: 30px 49%;
+  color: black;
+}
+
+.mainlink {
+  text-decoration: none;
+  color: black;
+  margin: 10px 46%;
+  display: block;
+}
+
+.mainlink:hover {
+  margin: 10px 45%;
+  font-size: 20px;
+  color: #5AB325;
+  text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.6);
+}
+
+.sublink:hover {
+  font-size: 20px;
+  color: #5AB325;
+  text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.6);
 }

@@ -8,10 +8,10 @@
 <body>
 <div class="centered">
   <p th:text="${error}">error</p>
-  <h1 class="enterheader">Enter</h1>
-  <form method="post" action="/enter/add">
-    <input class="input1" th:type="text" name="userName"/>
-    <input class="input2" th:type="submit" value="ENTER"/>
+  <h1 class="updateheader">Update</h1>
+  <form method="get" action="/update">
+    <input  class="input1" th:type="text" name="newName" th:placeholder="${userName}"/>
+    <input class="input2" th:type="submit" value="Update"/>
   </form>
 </div>
 <img class="image" src="../SABERS2small.png" height="300" width="300"/>
