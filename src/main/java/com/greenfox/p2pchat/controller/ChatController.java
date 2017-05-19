@@ -33,7 +33,7 @@ public class ChatController {
   }
 
   @RequestMapping(value = "/addMessage", method = RequestMethod.POST)
-  public String addMessage(@RequestParam(name = "message") String message, Model model) {
+  public String addMessage(@RequestParam(name = "message") String message) {
     if (userRepo.findOne((long) 1).getName() == null) {
       return "redirect:/enter";
     } else {

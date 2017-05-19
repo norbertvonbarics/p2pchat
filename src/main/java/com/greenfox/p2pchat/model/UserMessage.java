@@ -1,5 +1,6 @@
 package com.greenfox.p2pchat.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -14,9 +15,13 @@ import lombok.Setter;
 public class UserMessage {
 
   @Id
+  @JsonProperty(value = "id")
   long id;
+  @JsonProperty(value = "text")
   String userName;
+  @JsonProperty(value = "username")
   String message;
+  @JsonProperty(value = "timestamp")
   Timestamp timestamp;
 
   public UserMessage(String userName, String message) {
