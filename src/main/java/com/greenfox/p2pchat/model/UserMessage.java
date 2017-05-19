@@ -17,20 +17,20 @@ public class UserMessage {
   long id;
   String username;
   String text;
-  Timestamp time;
+  Timestamp timestamp;
 
   public UserMessage(String username, String message) {
     this.id = (int) (1000000 + (Math.random() * 999999));
     this.username = username;
     this.text = message;
-    this.time = new Timestamp(System.currentTimeMillis());
+    this.timestamp = new Timestamp(System.currentTimeMillis());
   }
 
-  public UserMessage(long id, String username, String text, Timestamp time) {
+  public UserMessage(long id, String username, String text, Timestamp timestamp) {
     this.id = id;
     this.username = username;
     this.text = text;
-    this.time = time;
+    this.timestamp = timestamp;
   }
 
   public UserMessage() {

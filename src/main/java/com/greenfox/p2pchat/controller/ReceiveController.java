@@ -23,7 +23,7 @@ public class ReceiveController {
   public Object receive(@RequestBody ReceivedMessage receivedMessage) {
     ReceivedMessage received = new ReceivedMessage(receivedMessage.getMessage(), receivedMessage.getClient());
     UserMessage chatMessage = new UserMessage(received.getMessage().getId(), received.getMessage().getUsername(), received.getMessage().getText(),
-        received.getMessage().getTime());
+        received.getMessage().getTimestamp());
     messageRepo.save(chatMessage);
     return new OkResponse("ok");
   }
