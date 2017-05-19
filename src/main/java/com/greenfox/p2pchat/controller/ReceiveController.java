@@ -22,7 +22,7 @@ public class ReceiveController {
   @RequestMapping(value = "/api/message/receive", method = RequestMethod.POST)
   public Object receive(@RequestBody ReceivedMessage receivedMessage) {
     ReceivedMessage received = new ReceivedMessage(receivedMessage.getMessage(), receivedMessage.getClient());
-    UserMessage chatMessage = new UserMessage(received.getMessage().getId(), received.getMessage().getUserName(), received.getMessage().getText(),
+    UserMessage chatMessage = new UserMessage(received.getMessage().getId(), received.getMessage().getUsername(), received.getMessage().getText(),
         received.getMessage().getTime());
     messageRepo.save(chatMessage);
     return new OkResponse("ok");
