@@ -1,5 +1,6 @@
 package com.greenfox.p2pchat.model;
 
+import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -13,13 +14,23 @@ import lombok.Setter;
 public class UserMessage {
 
   @Id
-  long id = (int)(1000000 + (Math.random() * 999999));
+  long id;
   String userName;
   String message;
+  Timestamp time;
 
   public UserMessage(String userName, String message) {
+    this.id = (int) (1000000 + (Math.random() * 999999));
     this.userName = userName;
     this.message = message;
+    this.time = new Timestamp(System.currentTimeMillis());
+  }
+
+  public UserMessage(long id, String userName, String message, Timestamp time) {
+    this.id = id;
+    this.userName = userName;
+    this.message = message;
+    this.time = time;
   }
 
   public UserMessage() {

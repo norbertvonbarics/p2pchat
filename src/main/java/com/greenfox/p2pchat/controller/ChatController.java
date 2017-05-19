@@ -34,10 +34,10 @@ public class ChatController {
 
   @RequestMapping(value = "/addMessage", method = RequestMethod.POST)
   public String addMessage(@RequestParam(name = "message") String message, Model model) {
-    if (userRepo.findOne((long)1).getName() == null) {
+    if (userRepo.findOne((long) 1).getName() == null) {
       return "redirect:/enter";
     } else {
-      messageRepo.save(new UserMessage(userRepo.findOne((long)1).getName(), message));
+      messageRepo.save(new UserMessage(userRepo.findOne((long) 1).getName(), message));
       return "redirect:/";
     }
   }
@@ -74,7 +74,7 @@ public class ChatController {
     } else {
       Log log = new Log("INFO", "PUT", "/update", newName);
       System.out.println(log.printLog(log));
-      User user = userRepo.findOne((long)1);
+      User user = userRepo.findOne((long) 1);
       updateExecute(user, newName);
       error = "";
 
@@ -82,13 +82,11 @@ public class ChatController {
     }
   }
 
-  @RequestMapping(value= "/update/execute", method= RequestMethod.PUT)
+  @RequestMapping(value = "/update/execute", method = RequestMethod.PUT)
   public void updateExecute(User user, String newName) {
     user.setName(newName);
     userRepo.save(user);
   }
-
-  @RequestMapping(value = "/api/message/receive", method= RequestMethod.GET)
 
   @ExceptionHandler(Exception.class)
   public ErrorMessage parameterMissing(Exception e) {
