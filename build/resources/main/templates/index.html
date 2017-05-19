@@ -23,14 +23,6 @@
 <div>
   <a  class="mainlink" href="/update">update username</a>
 </div>
-<!--
-<tr>
-  <th class="id">ID</th>
-  <th class="action">ACTION</th>
-  <th class="urgent">URGENT</th>
-  <th class="done">DONE</th>
-</tr>
--->
 <tr th:each="entry : ${messageRepo}">
   <div>
   <td class="id" th:text="${entry.id}">1</td>
