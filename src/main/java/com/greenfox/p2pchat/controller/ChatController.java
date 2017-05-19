@@ -49,16 +49,16 @@ public class ChatController {
   }
 
   @RequestMapping(value = "/enter/add", method = RequestMethod.POST)
-  public String addUser(@RequestParam(name = "userName") String userName, Model model) {
-    if (userName.isEmpty()) {
+  public String addUser(@RequestParam(name = "userName") String username, Model model) {
+    if (username.isEmpty()) {
       Log log = new Log("Error", "POST", "/enter/add", "no username provided");
       System.err.println(log.printLog(log));
       error = "The username field is empty";
       return "redirect:/enter";
     } else {
-      Log log = new Log("INFO", "POST", "/enter/add", userName + " registered");
+      Log log = new Log("INFO", "POST", "/enter/add", username + " registered");
       System.out.println(log.printLog(log));
-      userRepo.save(new User(userName));
+      userRepo.save(new User(username));
       error = "";
       return "redirect:/";
     }
