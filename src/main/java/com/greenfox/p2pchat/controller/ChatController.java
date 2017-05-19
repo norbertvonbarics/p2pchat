@@ -27,7 +27,6 @@ public class ChatController {
 
   @RequestMapping("/")
   public String chat(Model model) {
-    System.out.println(System.getenv("CHAT_APP_LOGLEVEL"));
     model.addAttribute("messageRepo", messageRepo.findAll());
     return "index";
   }
