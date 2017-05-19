@@ -34,10 +34,10 @@ public class ChatController {
 
   @RequestMapping(value = "/addMessage", method = RequestMethod.POST)
   public String addMessage(@RequestParam(name = "message") String message, Model model) {
-    if (userRepo.findOne((long) 1).getUserName() == null) {
+    if (userRepo.findOne((long) 1).getName() == null) {
       return "redirect:/enter";
     } else {
-      messageRepo.save(new UserMessage(userRepo.findOne((long) 1).getUserName(), message));
+      messageRepo.save(new UserMessage(userRepo.findOne((long) 1).getName(), message));
       return "redirect:/";
     }
   }
@@ -49,7 +49,7 @@ public class ChatController {
   }
 
   @RequestMapping(value = "/enter/add", method = RequestMethod.POST)
-  public String addUser(@RequestParam(name = "userName") String userName, Model model) {
+  public String addUser(@RequestParam(name = "userName") String userName) {
     if (userName.isEmpty()) {
       Log log = new Log("Error", "POST", "/enter/add", "no username provided");
       System.err.println(log.printLog(log));
@@ -77,14 +77,13 @@ public class ChatController {
       User user = userRepo.findOne((long) 1);
       updateExecute(user, newName);
       error = "";
-
       return "redirect:/";
     }
   }
 
   @RequestMapping(value = "/update/execute", method = RequestMethod.PUT)
   public void updateExecute(User user, String newName) {
-    user.setUserName(newName);
+    user.setName(newName);
     userRepo.save(user);
   }
 

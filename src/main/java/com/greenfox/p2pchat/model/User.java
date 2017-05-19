@@ -17,10 +17,10 @@ public class User {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   long id;
-  String userName;
+  String name;
 
   public User(String userName) {
-    this.userName = userName;
+    this.name = userName;
   }
 
   public User() {
