@@ -1,17 +1,20 @@
 package com.greenfox.p2pchat.model;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Date;
 
 public class Log {
 
   String path;
   String method;
-  Date time;
+  LocalDateTime time;
   String logLevel;
   String data;
 
   public Log(String logLevel, String method, String path, String data) {
-    this.time = new Date(System.currentTimeMillis());
+    this.time = LocalDateTime.now();
     this.logLevel = logLevel;
     this.method = method;
     this.data = data;

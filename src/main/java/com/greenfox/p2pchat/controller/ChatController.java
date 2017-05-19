@@ -2,8 +2,9 @@ package com.greenfox.p2pchat.controller;
 
 import com.greenfox.p2pchat.*;
 import com.greenfox.p2pchat.model.Log;
-import com.greenfox.p2pchat.model.RandomID;
 import com.greenfox.p2pchat.model.User;
+import com.greenfox.p2pchat.model.UserMessage;
+import com.greenfox.p2pchat.service.MessageRepository;
 import com.greenfox.p2pchat.service.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,10 +22,24 @@ public class ChatController {
   @Autowired
   UserRepository userRepo;
 
+  @Autowired
+  MessageRepository messageRepo;
+
   @RequestMapping("/")
-  public String chat() {
+  public String chat(Model model) {
     System.out.println(System.getenv("CHAT_APP_LOGLEVEL"));
+    model.addAttribute("messageRepo", messageRepo.findAll());
     return "index";
+  }
+
+  @RequestMapping(value = "/addMessage", method = RequestMethod.POST)
+  public String addMessage(@RequestParam(name = "message") String message, Model model) {
+    if (userRepo.findOne((long)1).getName() == null) {
+      return "redirect:/enter";
+    } else {
+      messageRepo.save(new UserMessage(userRepo.findOne((long)1).getName(), message));
+      return "redirect:/";
+    }
   }
 
   @RequestMapping(value = "/enter", method = RequestMethod.GET)
@@ -81,3 +96,11 @@ public class ChatController {
     return new ErrorMessage("shit just hits the fan");
   }
 }
+
+/*
+1681395 John Doe Hi, is your name Google?
+1399627 Jane Doe (No, Why?)
+1927907 John Doe Because you have everything I'm looking for!
+1454418 Jane Doe ಠ╭╮ಠ
+1296433 John Doe ¯\_(ツ)_/¯
+ */

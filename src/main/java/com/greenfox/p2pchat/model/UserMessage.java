@@ -5,25 +5,23 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 @Table(name = "userMessage")
 @Getter
 @Setter
-public class Message {
-  @Autowired
-  RandomID random;
-
+public class UserMessage {
 
   @Id
-  long id = random.randomID();
+  long id = (int)(1000000 + (Math.random() * 999999));
+  String userName;
   String message;
 
-  public Message(String message) {
+  public UserMessage(String userName, String message) {
+    this.userName = userName;
     this.message = message;
   }
 
-  public Message() {
+  public UserMessage() {
   }
 }

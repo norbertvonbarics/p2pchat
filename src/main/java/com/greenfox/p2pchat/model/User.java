@@ -20,10 +20,13 @@ public class User {
   String name;
 
   public User(String userName, long id) {
-  this.name = userName;
+    this.name = userName;
   }
 
   public User(String name) {
     this.name = name;
+  }
+
+  public User() {
   }
 }
