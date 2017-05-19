@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin("*")
-public class ReveiveController {
+public class ReceiveController {
 
 
   @Autowired
@@ -22,9 +22,9 @@ public class ReveiveController {
   @RequestMapping(value = "/api/message/receive", method = RequestMethod.POST)
   public Object receive(@RequestBody ReceivedMessage receivedMessage) {
     ReceivedMessage received = new ReceivedMessage(receivedMessage.getMessage(), receivedMessage.getClient());
-    UserMessage chatMessage = new UserMessage(received.getMessage().getUserName(),
-        received.getMessage().getMessage());
+    UserMessage chatMessage = new UserMessage(received.getMessage().getId(), received.getMessage().getUserName(), received.getMessage().getText(),
+        received.getMessage().getTime());
     messageRepo.save(chatMessage);
-    return new OkResponse();
+    return new OkResponse("ok");
   }
 }

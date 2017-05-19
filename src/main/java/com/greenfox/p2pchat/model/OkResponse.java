@@ -10,7 +10,7 @@ public class OkResponse {
   String status;
 
   public OkResponse(String status) {
-    this.status = "ok";
+    this.status = status;
   }
 
   public OkResponse() {
