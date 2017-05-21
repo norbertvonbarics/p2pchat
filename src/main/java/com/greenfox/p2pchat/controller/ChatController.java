@@ -33,8 +33,10 @@ public class ChatController {
 
   @RequestMapping(value = "/addMessage", method = RequestMethod.POST)
   public String addMessage(@RequestParam(name = "message") String message) {
-    if (userRepo.findOne((long) 1).getName() == null) {
+    if (userRepo.count() == 0) {
       return "redirect:/enter";
+    } else if (message.length() == 0){
+      return "redirect:/";
     } else {
       messageRepo.save(new UserMessage(userRepo.findOne((long) 1).getName(), message));
       return "redirect:/";
@@ -54,12 +56,14 @@ public class ChatController {
       System.err.println(log.printLog(log));
       error = "The username field is empty";
       return "redirect:/enter";
-    } else {
+    } else if (userRepo.count() == 0) {
       Log log = new Log("INFO", "POST", "/enter/add", userName + " registered");
       System.out.println(log.printLog(log));
       userRepo.save(new User(userName));
       error = "";
       return "redirect:/";
+    } else {
+      return "redirect:/update";
     }
   }
 
