@@ -31,7 +31,7 @@ public class ReceiveController {
         received.getMessage().getTimestamp());
     messageRepo.save(chatMessage);
     RestTemplate restTemplate = new RestTemplate();
-    restTemplate.postForObject(uri, new ReceivedMessage(chatMessage, new Client(clientID)), ReceivedMessage.class);
+    restTemplate.postForObject(uri, received, ReceivedMessage.class);
 
     return new OkResponse("ok");
   }
