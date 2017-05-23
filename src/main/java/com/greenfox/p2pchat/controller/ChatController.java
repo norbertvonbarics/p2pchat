@@ -43,8 +43,11 @@ public class ChatController {
     } else if (message.length() == 0){
       return "redirect:/";
     } else {
-      messageRepo.save(new UserMessage(userRepo.findOne((long) 1).getName(), message));
-      return "redirect:/send";
+      UserMessage chatMessage = new UserMessage(userRepo.findOne((long) 1).getName(), message);
+      messageRepo.save(chatMessage);
+      RestTemplate restTemplate = new RestTemplate();
+      restTemplate.postForObject(URI, new ReceivedMessage(chatMessage, new Client(CLIENT_ID)), ReceivedMessage.class);
+      return "redirect:/";
     }
   }
 
@@ -97,10 +100,7 @@ public class ChatController {
 
   @RequestMapping(value = "/send", method = RequestMethod.POST)
   public String send(@RequestParam("message") String message) {
-    UserMessage chatMessage = new UserMessage(userRepo.findOne((long) 1).getName(), message);
-    messageRepo.save(chatMessage);
-    RestTemplate restTemplate = new RestTemplate();
-    restTemplate.postForObject(URI, new ReceivedMessage(chatMessage, new Client(CLIENT_ID)), ReceivedMessage.class);
+
     return "redirect:/";
   }
 
