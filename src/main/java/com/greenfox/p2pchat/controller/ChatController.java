@@ -23,8 +23,8 @@ public class ChatController {
 
   Logger logger = Logger.getLogger(P2pchatApplication.class.getName());
 
-  private String uri = System.getenv("CHAT_APP_PEER_ADDRESS") + "/api/message/receive";
-  private String clientID = System.getenv("CHAT_APP_UNIQUE_ID");
+  private final String uri = System.getenv("CHAT_APP_PEER_ADDRESS") + "/api/message/receive";
+  private final String clientID = System.getenv("CHAT_APP_UNIQUE_ID");
   String error = "";
 
   @Autowired
