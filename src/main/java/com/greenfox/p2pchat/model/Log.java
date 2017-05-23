@@ -1,9 +1,11 @@
 package com.greenfox.p2pchat.model;
 
+import com.greenfox.p2pchat.P2pchatApplication;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Date;
+import org.apache.log4j.Logger;
 
 public class Log {
 

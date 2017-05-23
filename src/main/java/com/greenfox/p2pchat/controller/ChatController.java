@@ -8,6 +8,7 @@ import com.greenfox.p2pchat.model.User;
 import com.greenfox.p2pchat.model.UserMessage;
 import com.greenfox.p2pchat.service.MessageRepository;
 import com.greenfox.p2pchat.service.UserRepository;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +20,8 @@ import org.springframework.web.client.RestTemplate;
 
 @Controller
 public class ChatController {
+
+  Logger logger = Logger.getLogger(P2pchatApplication.class.getName());
 
   private String uri = System.getenv("CHAT_APP_PEER_ADDRESS") + "/api/message/receive";
   private String clientID = System.getenv("CHAT_APP_UNIQUE_ID");
@@ -60,6 +63,8 @@ public class ChatController {
   @RequestMapping(value = "/enter/add", method = RequestMethod.POST)
   public String addUser(@RequestParam(name = "userName") String userName) {
     if (userName.isEmpty()) {
+      logger.error("Error, POST, /enter/add, no username provided");
+
       Log log = new Log("Error", "POST", "/enter/add", "no username provided");
       System.err.println(log.printLog(log));
       error = "The username field is empty";
