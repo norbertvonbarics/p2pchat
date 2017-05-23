@@ -20,8 +20,8 @@ import org.springframework.web.client.RestTemplate;
 @Controller
 public class ChatController {
 
-  private static final String URI = System.getenv("CHAT_APP_PEER_ADDRESS") + "/api/message/receive";
-  private static final String CLIENT_ID = System.getenv("CHAT_APP_UNIQUE_ID");
+  private String uri = System.getenv("CHAT_APP_PEER_ADDRESS") + "/api/message/receive";
+  private String clientID = System.getenv("CHAT_APP_UNIQUE_ID");
   String error = "";
 
   @Autowired
@@ -46,7 +46,7 @@ public class ChatController {
       UserMessage chatMessage = new UserMessage(userRepo.findOne((long) 1).getName(), message);
       messageRepo.save(chatMessage);
       RestTemplate restTemplate = new RestTemplate();
-      restTemplate.postForObject(URI, new ReceivedMessage(chatMessage, new Client(CLIENT_ID)), ReceivedMessage.class);
+      restTemplate.postForObject(uri, new ReceivedMessage(chatMessage, new Client(clientID)), ReceivedMessage.class);
       return "redirect:/";
     }
   }
