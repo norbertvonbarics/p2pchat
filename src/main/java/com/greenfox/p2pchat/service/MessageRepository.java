@@ -5,5 +5,5 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
 public interface MessageRepository extends CrudRepository<UserMessage, Long> {
-  public List<UserMessage> findAllByOrderByTimestamp();
+  public List<UserMessage> findAllByOrderByTimestampAsc();
 }
