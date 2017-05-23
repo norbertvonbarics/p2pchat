@@ -1,7 +1,9 @@
 package com.greenfox.p2pchat.controller;
 
 import com.greenfox.p2pchat.*;
+import com.greenfox.p2pchat.model.Client;
 import com.greenfox.p2pchat.model.Log;
+import com.greenfox.p2pchat.model.ReceivedMessage;
 import com.greenfox.p2pchat.model.User;
 import com.greenfox.p2pchat.model.UserMessage;
 import com.greenfox.p2pchat.service.MessageRepository;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
 
 @Controller
 public class ChatController {
@@ -88,6 +91,17 @@ public class ChatController {
   public void updateExecute(User user, String newName) {
     user.setName(newName);
     userRepo.save(user);
+  }
+
+  @RequestMapping(value = "/send", method = RequestMethod.POST)
+  public String send(@RequestParam("message") String message) {
+    String clientID = System.getenv("CLIENT_ID");
+    String uri = System.getenv("URI");
+    UserMessage chatMessage = new UserMessage(userRepo.findOne((long) 1).getName(), message);
+    messageRepo.save(chatMessage);
+    RestTemplate restTemplate = new RestTemplate();
+    restTemplate.postForObject(uri, new ReceivedMessage(chatMessage, new Client(clientID)), ReceivedMessage.class);
+    return "redirect:/";
   }
 
   @ExceptionHandler(Exception.class)
