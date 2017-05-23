@@ -18,9 +18,9 @@ public class UserMessage {
   @JsonProperty(value = "id")
   long id;
   @JsonProperty(value = "text")
-  String userName;
-  @JsonProperty(value = "username")
   String message;
+  @JsonProperty(value = "username")
+  String userName;
   @JsonProperty(value = "timestamp")
   Timestamp timestamp;
 

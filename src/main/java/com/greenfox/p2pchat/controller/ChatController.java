@@ -103,12 +103,6 @@ public class ChatController {
     userRepo.save(user);
   }
 
-  @RequestMapping(value = "/send", method = RequestMethod.POST)
-  public String send(@RequestParam("message") String message) {
-
-    return "redirect:/";
-  }
-
   @ExceptionHandler(Exception.class)
   public ErrorMessage parameterMissing(Exception e) {
     System.err.println(e.getMessage());
