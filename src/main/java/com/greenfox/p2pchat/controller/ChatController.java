@@ -35,7 +35,7 @@ public class ChatController {
 
   @RequestMapping("/")
   public String chat(Model model) {
-    model.addAttribute("messageRepo", messageRepo.findAll());
+    model.addAttribute("messageRepo", messageRepo.findAllByOrderByTimestampAsc());
     return "index";
   }
 
