@@ -44,7 +44,7 @@ public class ChatController {
       return "redirect:/";
     } else {
       messageRepo.save(new UserMessage(userRepo.findOne((long) 1).getName(), message));
-      return "redirect:/";
+      return "redirect:/send";
     }
   }
 
