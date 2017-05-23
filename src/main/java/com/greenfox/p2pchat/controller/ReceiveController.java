@@ -30,10 +30,9 @@ public class ReceiveController {
         received.getMessage().getUserName(), received.getMessage().getMessage(),
         received.getMessage().getTimestamp());
     messageRepo.save(chatMessage);
-/*
     RestTemplate restTemplate = new RestTemplate();
     restTemplate.postForObject(uri, new ReceivedMessage(chatMessage, new Client(clientID)), ReceivedMessage.class);
-*/
+
     return new OkResponse("ok");
   }
 }
