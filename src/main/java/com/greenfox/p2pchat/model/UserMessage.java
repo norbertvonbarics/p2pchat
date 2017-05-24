@@ -46,6 +46,12 @@ public class UserMessage {
     this.timestamp = timestamp;
   }
 
+  public UserMessage(long id, String userName, String message) {
+    this.id = id;
+    this.userName = userName;
+    this.message = message;
+  }
+
   public UserMessage() {
   }
 }

@@ -4,7 +4,7 @@ import com.greenfox.p2pchat.ErrorMessage;
 import com.greenfox.p2pchat.model.Response;
 import com.greenfox.p2pchat.model.ReceivedMessage;
 import com.greenfox.p2pchat.model.UserMessage;
-import com.greenfox.p2pchat.service.MessageRepository;
+import com.greenfox.p2pchat.repository.MessageRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +23,7 @@ import org.springframework.web.client.RestTemplate;
 @CrossOrigin("*")
 public class ReceiveController {
 
-  private final String uri = System.getenv("CHAT_APP_PEER_ADDRESS") + "/api/message/receive";
+  private final String url = System.getenv("CHAT_APP_PEER_ADDRESS") + "/api/message/receive";
   private final String clientID = System.getenv("CHAT_APP_UNIQUE_ID");
 
   @Autowired
@@ -39,7 +39,7 @@ public class ReceiveController {
 
     if(!receivedMessage.getClient().getId().equals(clientID)) {
       RestTemplate restTemplate = new RestTemplate();
-      restTemplate.postForObject(uri, received, ReceivedMessage.class);
+      restTemplate.postForObject(url, received, ReceivedMessage.class);
     }
     return new Response("ok");
   }
