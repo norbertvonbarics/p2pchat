@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,12 +16,19 @@ import lombok.Setter;
 public class UserMessage {
 
   @Id
+  @NotNull
   @JsonProperty(value = "id")
   long id;
+
+  @NotNull
   @JsonProperty(value = "text")
   String message;
+
+  @NotNull
   @JsonProperty(value = "username")
   String userName;
+
+  @NotNull
   @JsonProperty(value = "timestamp")
   Timestamp timestamp;
 

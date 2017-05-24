@@ -23,7 +23,7 @@ public class Log {
     this.path = path;
   }
 
-  public String printLog (Log log){
+  public String printLog(Log log) {
     StringBuilder str = new StringBuilder();
     str.append(log.time);
     str.append(" ");
