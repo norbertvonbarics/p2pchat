@@ -1,7 +1,6 @@
 package com.greenfox.p2pchat.controller;
 
-import com.greenfox.p2pchat.model.Client;
-import com.greenfox.p2pchat.model.OkResponse;
+import com.greenfox.p2pchat.model.Response;
 import com.greenfox.p2pchat.model.ReceivedMessage;
 import com.greenfox.p2pchat.model.UserMessage;
 import com.greenfox.p2pchat.service.MessageRepository;
@@ -34,6 +33,6 @@ public class ReceiveController {
       RestTemplate restTemplate = new RestTemplate();
       restTemplate.postForObject(uri, received, ReceivedMessage.class);
     }
-    return new OkResponse("ok");
+    return new Response("ok");
   }
 }

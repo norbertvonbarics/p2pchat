@@ -5,14 +5,14 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class OkResponse {
+public class Response {
 
   String status;
 
-  public OkResponse(String status) {
+  public Response(String status) {
     this.status = status;
   }
 
-  public OkResponse() {
+  public Response() {
   }
 }
