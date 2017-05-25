@@ -8,7 +8,7 @@
   <link th:href="@{main.css}" rel="stylesheet" type="text/css"/>
   <title>Chat App</title>
 </head>
-<body>
+<body class="container">
 <div class="centered">
   <h1 class="indexheader">Peer to Peer</h1>
   <h2 class="subheader"> Chat program</h2>
@@ -26,13 +26,15 @@
 <div>
   <a  class="mainlink" href="/update">update username</a>
 </div>
+<table class="table table-striped">
 <tr th:each="entry : ${messageRepo}">
-  <div class="table table-striped">
+  <div>
   <td class="id" th:text="${entry.timestamp}">1</td>
   <td class="action" th:text="${entry.message}">2</td>
   <td class="action" th:text="${entry.userName}">3</td>
   </div>
 </tr>
+</table>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>
 </html>
