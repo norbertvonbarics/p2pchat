@@ -43,7 +43,8 @@ public class ReceiveController {
         received.getMessage().getUserName(), received.getMessage().getMessage(),
         received.getMessage().getTimestamp());
     messageRepo.save(chatMessage);
-
+    System.out.println(clientID);
+    System.out.println(received.getClient().getId());
     if(!receivedMessage.getClient().getId().equals(clientID)) {
       //logger.info("POST, /api/message/receive, message received");
       RestTemplate restTemplate = new RestTemplate();
