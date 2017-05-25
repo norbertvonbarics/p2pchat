@@ -23,7 +23,7 @@ public class ChatController {
 
   Logger logger = Logger.getLogger(P2pchatApplication.class.getName());
 
-  private String uri = System.getenv("CHAT_APP_PEER_ADDRESS") + "/api/message/receive";
+  private String uri = System.getenv("CHAT_APP_PEER_ADDRESSS") + "/api/message/receive";
   private String clientID = System.getenv("CHAT_APP_UNIQUE_ID");
   String error = "";
 
@@ -42,10 +42,13 @@ public class ChatController {
   @RequestMapping(value = "/addMessage", method = RequestMethod.POST)
   public String addMessage(@RequestParam(name = "message") String message) {
     if (userRepo.count() == 0) {
+      logger.error("POST, /addMessage, no username added");
       return "redirect:/enter";
     } else if (message.length() == 0){
+      logger.error("POST, /addMessage, message length = 0");
       return "redirect:/";
     } else {
+      logger.info("POST, /addMessage, message saved");
       UserMessage chatMessage = new UserMessage(userRepo.findOne((long) 1).getName(), message);
       messageRepo.save(chatMessage);
       RestTemplate restTemplate = new RestTemplate();
@@ -56,6 +59,7 @@ public class ChatController {
 
   @RequestMapping(value = "/enter", method = RequestMethod.GET)
   public String enter(Model model) {
+    logger.info("GET, /enter, enter template loaded");
     model.addAttribute("error", error);
     return "enter";
   }
@@ -63,19 +67,18 @@ public class ChatController {
   @RequestMapping(value = "/enter/add", method = RequestMethod.POST)
   public String addUser(@RequestParam(name = "userName") String userName) {
     if (userName.isEmpty()) {
-      logger.error("Error, POST, /enter/add, no username provided");
-
-      Log log = new Log("Error", "POST", "/enter/add", "no username provided");
-      System.err.println(log.printLog(log));
+      logger.error("POST, /enter/add, no username provided");
       error = "The username field is empty";
       return "redirect:/enter";
+
     } else if (userRepo.count() == 0) {
-      Log log = new Log("INFO", "POST", "/enter/add", userName + " registered");
-      System.out.println(log.printLog(log));
+      logger.info("POST, /enter/add, " + userName + " registered");
       userRepo.save(new User(userName));
       error = "";
       return "redirect:/";
+
     } else {
+      logger.error("POST, /addMessage, something went wrong");
       return "redirect:/update";
     }
   }
@@ -83,13 +86,11 @@ public class ChatController {
   @RequestMapping("/update")
   public String update(Model model, @RequestParam("newName") String newName) {
     if (newName.isEmpty()) {
-      Log log = new Log("Error", "PUT", "/update", "no username provided");
-      System.err.println(log.printLog(log));
+      logger.error("PUT, /update, no username provided");
       error = "The username field is empty.";
       return "redirect:/update";
     } else {
-      Log log = new Log("INFO", "PUT", "/update", newName);
-      System.out.println(log.printLog(log));
+      logger.info("PUT, /update, username provided");
       User user = userRepo.findOne((long) 1);
       updateExecute(user, newName);
       error = "";
@@ -99,6 +100,7 @@ public class ChatController {
 
   @RequestMapping(value = "/update/execute", method = RequestMethod.PUT)
   public void updateExecute(User user, String newName) {
+    logger.info("PUT, /update, username updated");
     user.setName(newName);
     userRepo.save(user);
   }
@@ -111,6 +113,7 @@ public class ChatController {
 }
 
 /*
+Testride:
 1681395 John Doe Hi, is your name Google?
 1399627 Jane Doe (No, Why?)
 1927907 John Doe Because you have everything I'm looking for!

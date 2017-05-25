@@ -49,10 +49,14 @@ public class ReceiveControllerTest {
     this.mockMvc = webAppContextSetup(webApplicationContext).build();
   }
 
+  private final String url = System.getenv("CHAT_APP_PEER_ADDRESSS") + "/api/message/receive";
+  private final String clientID = System.getenv("CHAT_APP_UNIQUE_ID");
+
   @Test
   public void testReceive_withCorrectInput() throws Exception {
-    UserMessage message = new UserMessage(7655482, "EggDice", "How you doin'?", new Timestamp(1322018752992L));
-     Client client = new Client("EggDice");
+
+    UserMessage message = new UserMessage(7655482, "Podi87", "How you doin'?", new Timestamp(1322018752992L));
+     Client client = new Client("Podi87");
     ReceivedMessage receivedMessage = new ReceivedMessage(message, client);
     ObjectMapper mapper = new ObjectMapper();
     String jsonInput = mapper.writeValueAsString(receivedMessage);
@@ -91,22 +95,15 @@ public class ReceiveControllerTest {
 
   @Test
   public void testMissingBodyParameterOnGettingMessage() throws Exception {
+    UserMessage message = new UserMessage(7655482, "Podi87", "How you doin'?");
+    Client client = new Client("Podi87");
+    ReceivedMessage receivedMessage = new ReceivedMessage(message, client);
+    ObjectMapper mapper = new ObjectMapper();
+    String jsonInput = mapper.writeValueAsString(receivedMessage);
+
     mockMvc.perform(post("/api/message/receive")
         .contentType(MediaType.APPLICATION_JSON)
-        .content("{\n"
-            + "  \"message\": {\n"
-            + "    \"id\": 7655482,\n"
-            + "    \"text\": \"How you doin'?\",\n"
-            + "    \"timestamp\": 1322018752992\n"
-            + "  },\n"
-            + "  \"client\": {\n"
-            + "    \"id\": \"EggDice\"\n"
-            + "  }\n"
-            + "}"))
-        .andExpect(status().is4xxClientError())
-        .andExpect(content().json("{\n"
-            + "  \"status\": \"error\",\n"
-            + "  \"message\": \"Missing field(s): message.chatUserName, \"\n"
-            + "}"));
+        .content(jsonInput))
+        .andExpect(status().is4xxClientError());
   }
 }
