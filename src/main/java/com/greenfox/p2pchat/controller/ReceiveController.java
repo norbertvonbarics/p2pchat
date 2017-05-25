@@ -3,7 +3,7 @@ package com.greenfox.p2pchat.controller;
 import com.greenfox.p2pchat.model.Response;
 import com.greenfox.p2pchat.model.ReceivedMessage;
 import com.greenfox.p2pchat.model.UserMessage;
-import com.greenfox.p2pchat.service.MessageRepository;
+import com.greenfox.p2pchat.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
