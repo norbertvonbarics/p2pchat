@@ -58,12 +58,12 @@
 .mainlink {
   text-decoration: none;
   color: black;
-  margin: 10px 46%;
+  margin: 10px 50%;
   display: block;
 }
 
 .mainlink:hover {
-  margin: 10px 45%;
+  margin: 10px 49%;
   font-size: 20px;
   color: #5AB325;
   text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.6);
