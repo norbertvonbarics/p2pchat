@@ -1,5 +1,6 @@
 package com.greenfox.p2pchat.model;
 
+import javax.validation.Valid;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,7 +8,10 @@ import lombok.Setter;
 @Setter
 public class ReceivedMessage {
 
+  @Valid
   UserMessage message;
+  
+  @Valid
   Client client;
 
   public ReceivedMessage(UserMessage message, Client client) {
