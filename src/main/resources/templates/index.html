@@ -29,9 +29,9 @@
 <table class="table table-striped">
 <tr th:each="entry : ${messageRepo}">
   <div>
-  <td class="id" th:text="${entry.timestamp}">1</td>
+  <td class="id" th:text="${entry.timestamp}"><strong>1</strong></td>
   <td class="action" th:text="${entry.message}">2</td>
-  <td class="action" th:text="${entry.userName}">3</td>
+  <td class="action" th:text="${entry.userName}"><strong>3</strong></td>
   </div>
 </tr>
 </table>
