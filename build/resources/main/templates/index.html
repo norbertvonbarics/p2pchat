@@ -21,7 +21,7 @@
   </form>
 </div>
 <div>
-  <a  class="mainlink" href="/enter">addname</a>
+  <a  class="mainlink" href="/enter">name</a>
 </div>
 <div>
   <a  class="mainlink" href="/update">updatename</a>
@@ -29,9 +29,9 @@
 <table class="table table-striped">
 <tr th:each="entry : ${messageRepo}">
   <div>
-  <td class="id" th:text="${entry.timestamp}"><strong>1</strong></td>
+  <td class="id" th:text="${entry.timestamp}">1</td>
   <td class="action" th:text="${entry.message}">2</td>
-  <td class="action" th:text="${entry.userName}"><strong>3</strong></td>
+  <td class="action" th:text="${entry.userName}">3</td>
   </div>
 </tr>
 </table>
