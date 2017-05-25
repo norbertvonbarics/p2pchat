@@ -10,7 +10,7 @@ public class ReceivedMessage {
 
   @Valid
   UserMessage message;
-  
+
   @Valid
   Client client;
 
